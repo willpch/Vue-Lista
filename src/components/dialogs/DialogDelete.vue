@@ -1,28 +1,28 @@
 <template>
     <v-row justify="center">
         <v-dialog
-            v-model="props.dialog"
+            v-model="taskStore.showDialogDelete"
             persistent
             width="auto"
         >
             <v-card>
                 <v-card-title class="text-h5">
-                    Use Google's location service?
+                    Tem certeza que quer deletar?
                 </v-card-title>
-                <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+                <v-card-text>Esta ação não pode ser desfeita.</v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                        color="green-darken-1"
-                        variant="text"
-                        @click="$emit('toggleDelete')"
+                        color="red-darken-1"
+                        variant="elevated"
+                        @click="taskStore.toggleDelete"
                     >
                         Não
                     </v-btn>
                     <v-btn
-                        color="green-darken-1"
-                        variant="text"
-                        @click="$emit('deleteTask')"
+                        color="red-darken-1"
+                        variant="outlined"
+                        @click="taskStore.deleteTask"
                     >
                         Sim!
                     </v-btn>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-    const props = defineProps({
-        dialog: Boolean
-    })
+    import { useTaskStore } from "@/store/task";
+
+    const taskStore = useTaskStore();
 </script>

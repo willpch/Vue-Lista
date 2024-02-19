@@ -1,6 +1,6 @@
 {
-  "name": "vue-todo",
-  "version": "0.0.0",
+  "name": "Lista de Compras Will",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "@ossph/v-animate-css": "^2.0.0",
+    "animate.css": "^4.1.1",
     "core-js": "^3.34.0",
     "roboto-fontface": "*",
     "vue": "^3.3.0",

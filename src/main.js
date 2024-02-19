@@ -4,6 +4,8 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
+import 'animate.css';
+
 // Plugins
 import { registerPlugins } from '@/plugins'
 

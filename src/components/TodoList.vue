@@ -2,42 +2,31 @@
     <v-text-field
         clearable
         label="Adicionar Item"
-        v-model="task.title"
-        @keyup.enter="addTask"
+        :rules="rules"
+        v-model="taskStore.titleTaskCreating"
+        @keyup.enter="taskStore.addTask"
     >
     </v-text-field>
 
-    <ListTasks :tasks="tasks"/>
+    <ListTasks />
 </template>
 
 <script setup>
+    import { onMounted } from "vue";
     import ListTasks from "@/components/ListTasks.vue";
+    import { useTaskStore } from "@/store/task";
 
-    import {ref} from 'vue';
+    const taskStore = useTaskStore();
+    const rules =
+        [
+            value => {
+                if (!value || value.length >= 3) return true
 
-    const tasks = ref([
-        {
-            title: "Estudar Vue",
-            description: "Estudar Vue com Vuetify."
-        },
-        {
-            title: "Ler a Documentacão",
-            description: "Ler a Documentacão do Vuetify."
-        }
-    ]);
+                return 'Digite algum item com mais de 3 letras.'
+            },
+        ];
 
-    const task = ref({
-        title: "",
-        description: ""
-    });
-    const addTask = () => {
-        tasks.value.push({
-            title: task.value.title,
-            description: task.value.description
-        });
-        task.value = {
-            title: "",
-            description: ""
-        }
-    }
+    onMounted(() => {
+        taskStore.getTasks();
+    })
 </script>

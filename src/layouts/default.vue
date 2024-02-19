@@ -1,14 +1,23 @@
 <template>
+    <Alert v-if="alertStore.showAlert"/>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer">
-        <v-list>
-            <v-list-item
-                prepend-avatar="https://avatars.githubusercontent.com/u/82915149?v=4"
-                title="Will Pacheco"
-                subtitle="Lista de Compras"
-            >
-            </v-list-item>
-        </v-list>
+        <v-img
+            src="https://picsum.photos/1920/1080?random"
+            gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+            height="80"
+            cover
+            class="pt-2"
+        >
+            <v-list>
+                <v-list-item
+                    prepend-avatar="https://avatars.githubusercontent.com/u/82915149?v=4"
+                    title="Will Pacheco"
+                    subtitle="Lista de Compras"
+                >
+                </v-list-item>
+            </v-list>
+        </v-img>
 
         <v-divider></v-divider>
 
@@ -37,7 +46,16 @@
         </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar>
+    <v-app-bar
+        color="teal-darken-4"
+        image="https://picsum.photos/1920/1080?random"
+        density="prominent"
+    >
+        <template v-slot:image>
+            <v-img
+                gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+            ></v-img>
+        </template>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Lista de compras</v-app-bar-title>
@@ -51,6 +69,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import Alert from "@/components/shared/Alert.vue";
+import { useAlertStore } from "@/store/alert";
+
+const alertStore = useAlertStore();
 
 const drawer = ref(null);
 
